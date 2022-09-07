@@ -1,0 +1,14 @@
+#INITIAL DATA FOR PRODUCT CATEGORY
+#replace model name with your if you call it different in models.py
+- model: opg.productcategory
+  pk: 1
+  fields:
+    name: VOĆE
+- model: opg.productcategory
+  pk: 2
+  fields:
+    name: POVRĆE
+- model: opg.productcategory
+  pk: 3
+  fields:
+    name: MLIJEČNI PROIZVODI
