@@ -1,0 +1,10 @@
+<p>Da li zaista želite izbrisati "{{product.name}}"?</p>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value=" DA " class="delete">
+    <a href="{% url 'product_list' %}"><input type="button" value=" NE "></a>
+</form>
+{% for message in messages %}
+    <p id="messages">{{message}}</p>
+{% endfor %}

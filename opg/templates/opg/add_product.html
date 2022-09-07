@@ -1,0 +1,15 @@
+{% extends 'opg/master.html' %}
+
+{% block content %}
+
+<h1>Dodavanje proizvoda </h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Dodaj proizvod">
+</form>
+{% for message in messages %}
+    <p id="messages">{{message}}</p>
+{% endfor %}
+{% endblock %}

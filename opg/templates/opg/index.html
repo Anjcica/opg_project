@@ -1,0 +1,12 @@
+{% extends 'opg/master.html' %}
+
+{% block content %}
+
+<h1> Poruka dobrodošlice</h1>
+
+<p>
+ <a href="{% url 'login' %}"><input type="button" value="Login"></a>
+ <a href="{% url 'register' %}"><input type="button" value="Registracija"></a>
+</p>
+
+{% endblock %}

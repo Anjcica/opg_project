@@ -1,0 +1,24 @@
+{% extends 'opg/master.html' %}
+
+{% block content %}
+<p><a href="{% url 'add_product' %}"><input type="button" value=" Dodaj novi "></a></p>
+<table border="1">
+    <tr>
+        <th>Naziv proizvoda</th>
+        <th>Kategorija proizvoda</th>
+        <th>Detalji</th>
+        <th>Brisanje</th>
+    </tr>
+{% for product in products %}
+    <tr>
+        <td>{{product.name}}</td>
+        <td>{{product.category|lower|capfirst}}</td>
+        <td><a href="{% url 'product' product.id %}">Detalji</a></td>
+        <td> <a href="{% url 'delete_product' product.id %}">Brisanje</a></td>
+    </tr>
+{% endfor %}
+</table>
+{% for message in messages %}
+    <p id="messages">{{message}}</p>
+{% endfor %}
+{% endblock %}

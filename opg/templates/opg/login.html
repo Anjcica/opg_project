@@ -1,0 +1,15 @@
+{% extends 'opg/master.html' %}
+
+{% block content %}
+
+<h1>Login </h1>
+<form method="POST" action="">
+    {% csrf_token %}
+    <p>Email  <input type="text" name="username"></p>
+    <p>Lozinka  <input type="password" name="password"></p>
+    <input type="submit" value="Login">
+</form>
+{% for message in messages %}
+    <p id="messages">{{message}}</p>
+{% endfor %}
+{% endblock %}

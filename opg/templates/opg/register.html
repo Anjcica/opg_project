@@ -1,0 +1,26 @@
+{% extends 'opg/master.html' %}
+
+{% block content %}
+
+<h1>Registracija novog korisnika i OPG-a</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <p>Ime  {{user_form.first_name}}</p>
+    <p>Prezime  {{user_form.last_name}}</p>
+    <p>Naziv OPG-a  {{opg_form.name}}</p>
+    <p>Adresa  {{opg_form.address}}</p>
+    <p>Telefon  {{opg_form.phone}}</p>
+    <p>Email (korisničko ime) {{user_form.username}}</p>
+    <p>Lozinka  {{user_form.password1}}</p>
+    <p>Potvrda lozinke  {{user_form.password2}}</p>
+
+    <br>
+    <input type="submit" value="Kreiraj korisnika">
+</form>
+
+{% for message in messages %}
+    <p id="messages">{{message}}</p>
+{% endfor %}
+
+{% endblock %}

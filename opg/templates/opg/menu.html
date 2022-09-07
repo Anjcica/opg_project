@@ -1,0 +1,6 @@
+<div style="border:2px; border-style:solid; padding:1em">
+     <a href="{% url 'product_list' %}">Proizvodi</a>
+     <a href="{% url 'profile' %}">Profil</a>
+     <a href="{% url 'logout' %}">Odjava</a>
+     {{request.user.opg}}
+</div>

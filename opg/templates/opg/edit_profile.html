@@ -1,0 +1,19 @@
+{% extends 'opg/master.html' %}
+
+{% block content %}
+
+<h1>Editiranje profila</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    <p>Ime <input name="first_name" value={{request.user.first_name}}></p>
+    <p>Prezime <input name="last_name" value={{request.user.last_name}}></p>
+    <p>Naziv OPG-a  {{opg_form.name}}</p>
+    <p>Adresa  {{opg_form.address}}</p>
+    <p>Telefon  {{opg_form.phone}}</p>
+
+    <input type="submit" value="Editiraj">
+</form>
+{% for message in messages %}
+    <p id="messages">{{message}}</p>
+{% endfor %}
+{% endblock %}
