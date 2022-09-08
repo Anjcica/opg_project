@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 # from pathlib import Path
 import os
-import dj_database_url
+# import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -98,8 +98,19 @@ WSGI_APPLICATION = 'opg_project.wsgi.application'
 #     }
 # }
 
-
-DATABASES['default'] = dj_database_url.config(postgres://isuquznnupobbn:bbe817377502ecc5d0eb4ba01b9b2367c590a46883aba99ac6b86327dd3e0cf5@ec2-99-81-137-11.eu-west-1.compute.amazonaws.com:5432/d9ib3snd0m751n)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd9ib3snd0m751n',
+        'USER': 'isuquznnupobbn',
+        'PASSWORD': 'bbe817377502ecc5d0eb4ba01b9b2367c590a46883aba99ac6b86327dd3e0cf5',
+        'HOST': 'ec2-99-81-137-11.eu-west-1.compute.amazonaws.com',
+        'PORT': '5432',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+# DATABASES['default'] = dj_database_url.config(postgres://isuquznnupobbn:bbe817377502ecc5d0eb4ba01b9b2367c590a46883aba99ac6b86327dd3e0cf5@ec2-99-81-137-11.eu-west-1.compute.amazonaws.com:5432/d9ib3snd0m751n)
 
 
 # Password validation
