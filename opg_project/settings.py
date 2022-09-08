@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 # from pathlib import Path
 import os
+import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
@@ -50,9 +52,7 @@ AUTH_USER_MODEL = 'user.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-
     "whitenoise.middleware.WhiteNoiseMiddleware",
-
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'opg_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
+#
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -98,8 +98,6 @@ WSGI_APPLICATION = 'opg_project.wsgi.application'
 #     }
 # }
 
-
-import dj_database_url
 
 DATABASES['default'] = dj_database_url.config(postgres://isuquznnupobbn:bbe817377502ecc5d0eb4ba01b9b2367c590a46883aba99ac6b86327dd3e0cf5@ec2-99-81-137-11.eu-west-1.compute.amazonaws.com:5432/d9ib3snd0m751n)
 
@@ -139,9 +137,15 @@ FIXTURE_DIRS = os.path.join(BASE_DIR, 'opg/fixtures')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = '/static/'
+
+STATIC_URL = os.getenv("STATIC_URL", "/static/")
+
+STATIC_ROOT = os.getenv("STATIC_ROOT", os.path.join(BASE_DIR, "static"))
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
