@@ -16,11 +16,16 @@
     {% if user.is_authenticated and not request.user.opg == "" %}
         {% include 'opg/menu.html' %}
     {% endif %}
+
     </div>
     {% block content %}
-    {{request.user}}
+
         <p> empty page </p>
     {% endblock %}
+
+    {% for message in messages %}
+        <p id="messages">{{message}}</p>
+    {% endfor %}
 
 </body>
 </html>

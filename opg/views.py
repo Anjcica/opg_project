@@ -2,10 +2,11 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.template import loader
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from .models import Product
-from .forms import OpgForm, ProductForm, CreateUserForm
+from .forms import OpgForm, ProductForm
+from user.forms import UserCreationForm
 
 
 def index(request):
@@ -17,10 +18,10 @@ def index(request):
 
 
 def register(request):
-    user_form = CreateUserForm()
+    user_form = UserCreationForm()
     opg_form = OpgForm()
     if request.method == 'POST':
-        user_form = CreateUserForm(request.POST)
+        user_form = UserCreationForm(request.POST)
         opg_form = OpgForm(request.POST)
         if user_form.is_valid() and opg_form.is_valid():
             user = user_form.save(commit=False)
@@ -31,7 +32,8 @@ def register(request):
             login(request, user)
             return redirect('/add_product')
         else:
-            messages.warning(request, 'Došlo je do pogreške')
+            for error in list(user_form.errors.values()) and list(opg_form.errors.values()):
+                messages.error(request, error)
 
     context = {
         'user_form': user_form,
@@ -41,26 +43,26 @@ def register(request):
     return HttpResponse(template.render(context, request))
 
 
-def user_login(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-
-        user = authenticate(request, email=email, password=password)
-
-        if user is not None:
-            login(request, user)
-            return redirect('profile')
-        else:
-            messages.info(request, 'Ime ili lozinka pogrešni')
-    context = {}
-    template = loader.get_template('opg/login.html')
-    return HttpResponse(template.render(context, request))
-
-
-def user_logout(request):
-    logout(request)
-    return redirect('/')
+# def user_login(request):
+#     if request.method == 'POST':
+#         email = request.POST.get('email')
+#         password = request.POST.get('password')
+#
+#         user = authenticate(request, email=email, password=password)
+#
+#         if user is not None:
+#             login(request, user)
+#             return redirect('profile')
+#         else:
+#             messages.info(request, 'Ime ili lozinka pogrešni')
+#     context = {}
+#     template = loader.get_template('opg/login.html')
+#     return HttpResponse(template.render(context, request))
+#
+#
+# def user_logout(request):
+#     logout(request)
+#     return redirect('/')
 
 
 @login_required(login_url='login')
@@ -83,10 +85,10 @@ def add_product(request):
             product = form.save(commit=False)
             product.opg = opg
             product.save()
-            messages.info(request, 'Proizvod dodan')
             return redirect('product_list')
         else:
-            messages.warning(request, 'Došlo je do pogreške')
+            for error in list(form.errors.values()):
+                messages.error(request, error)
     context = {
         'form': form,
     }
@@ -99,7 +101,6 @@ def delete_product(request, pk):
     product = Product.objects.get(id=pk)
     if request.method == 'POST':
         product.delete()
-        messages.info(request, 'Proizvod obrisan')
         return redirect('product_list')
     context = {
         'product': product
@@ -116,10 +117,10 @@ def product(request, pk):
         form = ProductForm(request.POST, instance=product)
         if form.is_valid():
             form.save()
-            messages.info(request, 'Proizvod editiran')
             return redirect('product_list')
         else:
-            messages.warning(request, 'Došlo je do pogreške')
+            for error in list(form.errors.values()):
+                messages.error(request, error)
     context = {
         'form': form,
     }
@@ -155,7 +156,8 @@ def edit_profile(request):
             login(request, user)
             return redirect('/')
         else:
-            messages.warning(request, 'Došlo je do pogreške')
+            for error in list(opg_form.errors.values()):
+                messages.error(request, error)
 
     context = {
         'opg_form': opg_form,

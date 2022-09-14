@@ -1,18 +1,9 @@
 from django.db import models
-# from django.contrib.auth.models import AbstractUser
-#
-#
-# class User(AbstractUser):
-#
-#     first_name = models.CharField(max_length=50, blank=True)
-#     last_name = models.CharField(max_length=50, blank=True)
-#     username = models.EmailField(max_length=50, unique=True, blank=False)  # email
-
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email, first_name=None, last_name=None, password=None):
+    def create_user(self, email, first_name, last_name, password=None):
         if not email:
             raise ValueError('Users must have email Address')
         if not password:

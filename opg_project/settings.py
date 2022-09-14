@@ -141,6 +141,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 # FIXTURE_DIRS = os.path.join(BASE_DIR, 'opg/fixtures')
 
 FIXTURE_DIRS = (
