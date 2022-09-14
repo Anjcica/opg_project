@@ -85,31 +85,29 @@ WSGI_APPLICATION = 'opg_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 #
+DATABASES = {
+    'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'OPG',
+    #     'USER': 'admin',
+    #     'PASSWORD': 'Passw0rd',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+    }
+}
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'OPG',
-#         'USER': 'admin',
-#         'PASSWORD': 'Passw0rd',
-#         'HOST': 'localhost',
+#         'NAME': 'd9ib3snd0m751n',
+#         'USER': 'isuquznnupobbn',
+#         'PASSWORD': 'bbe817377502ecc5d0eb4ba01b9b2367c590a46883aba99ac6b86327dd3e0cf5',
+#         'HOST': 'ec2-99-81-137-11.eu-west-1.compute.amazonaws.com',
 #         'PORT': '5432',
-#         # 'ENGINE': 'django.db.backends.sqlite3',
-#         # 'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd9ib3snd0m751n',
-        'USER': 'isuquznnupobbn',
-        'PASSWORD': 'bbe817377502ecc5d0eb4ba01b9b2367c590a46883aba99ac6b86327dd3e0cf5',
-        'HOST': 'ec2-99-81-137-11.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432',
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 # DATABASES['default'] = dj_database_url.config(postgres://isuquznnupobbn:bbe817377502ecc5d0eb4ba01b9b2367c590a46883aba99ac6b86327dd3e0cf5@ec2-99-81-137-11.eu-west-1.compute.amazonaws.com:5432/d9ib3snd0m751n)
 
 
@@ -143,7 +141,12 @@ USE_I18N = True
 
 USE_TZ = True
 
-FIXTURE_DIRS = os.path.join(BASE_DIR, 'opg/fixtures')
+# FIXTURE_DIRS = os.path.join(BASE_DIR, 'opg/fixtures')
+
+FIXTURE_DIRS = (
+    os.path.join(BASE_DIR, 'fixtures',),
+)
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
