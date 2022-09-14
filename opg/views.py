@@ -9,7 +9,7 @@ from .forms import OpgForm, ProductForm, CreateUserForm
 
 
 def index(request):
-    if request.user.is_authenticated and not(request.user.is_superuser):
+    if request.user.is_authenticated and not(request.user.is_admin):
         return redirect('profile')
     context = {}
     template = loader.get_template('opg/index.html')
@@ -43,10 +43,10 @@ def register(request):
 
 def user_login(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
+        email = request.POST.get('email')
         password = request.POST.get('password')
 
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, email=email, password=password)
 
         if user is not None:
             login(request, user)

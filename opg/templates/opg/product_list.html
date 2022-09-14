@@ -11,7 +11,7 @@
     </tr>
 {% for product in products %}
     <tr>
-        <td>{{product.name}}</td>
+        <td>{{product.name|capfirst}}</td>
         <td>{{product.category|lower|capfirst}}</td>
         <td><a href="{% url 'product' product.id %}">Detalji</a></td>
         <td> <a href="{% url 'delete_product' product.id %}">Brisanje</a></td>
