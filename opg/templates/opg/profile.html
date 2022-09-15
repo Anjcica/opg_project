@@ -2,12 +2,33 @@
 
 {% block content %}
 
-<h1>Pregled profila </h1>
-    <p>Ime   {{user.first_name}}</p>
-    <p>Prezime   {{user.last_name}}</p>
-    <p>Naziv OPG-a  {{opg.name}}</p>
-    <p>Adresa  {{opg.address}}</p>
-    <p>Telefon  {{opg.phone}}</p>
-    <p><a href="{% url 'edit_profile' %}"><input type="button" value=" Editiranje profila "></a></p>
+<h3>Pregled profila </h3>
+<div class="border" style="margin-bottom:20px" >
+<table class="table table-hover table-borderless " >
+    <tr>
+        <td class="col-3">Ime</td>
+        <td class="col-9">{{user.first_name}}</td>
+    </tr>
+    <tr>
+        <td class="col-3">Prezime</td>
+        <td class="col-9">{{user.last_name}}</td>
+    </tr>
+    <tr>
+        <td class="col-3">Naziv OPG-a</td>
+        <td class="col-9">{{opg.name}}</td>
+    </tr>
+    <tr>
+        <td class="col-3">Adresa</td>
+        <td class="col-9">{{opg.address}}</td>
+    </tr>
+    <tr>
+        <td class="col-3">Telefon</td>
+        <td class="col-9">{{opg.phone}}</td>
+    </tr>
+
+</table>
+</div>
+
+<a class="btn btn-light" href="{% url 'edit_profile' %}" role="button" > Editiranje profila </a>
 
 {% endblock %}

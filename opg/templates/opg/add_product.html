@@ -2,14 +2,14 @@
 
 {% block content %}
 
-<h1>Dodavanje proizvoda </h1>
-
+<h3>Dodavanje proizvoda </h3>
+<div
 <form action="" method="POST">
     {% csrf_token %}
     {{formset.management_form}}
     {% for form in formset %}
-        <p>Ime proizvoda : {{ form.name }}
-            Kategorija proizvoda : {{ form.category }}
+        <p>Ime proizvoda  {{ form.name }}
+              Kategorija proizvoda  {{ form.category }}
         </p>
     {% endfor %}
         <br>

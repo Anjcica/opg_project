@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Editiranje profila</h1>
+<h3>Editiranje profila</h3>
 <form action="" method="POST">
     {% csrf_token %}
     <p>Ime <input name="first_name" value={{request.user.first_name}}></p>
