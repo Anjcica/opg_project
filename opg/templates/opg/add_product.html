@@ -8,9 +8,9 @@
     {% csrf_token %}
     {{formset.management_form}}
     {% for form in formset %}
-        {{ form }}
-        <br>
-        <br>
+        <p>Ime proizvoda : {{ form.name }}
+            Kategorija proizvoda : {{ form.category }}
+        </p>
     {% endfor %}
         <br>
     <input type="submit" value="Dodaj proizvode">
