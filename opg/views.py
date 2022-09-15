@@ -32,8 +32,10 @@ def register(request):
             login(request, user)
             return redirect('/add_product')
         else:
-            for error in list(user_form.errors.values()) and list(opg_form.errors.values()):
-                messages.error(request, error)
+            for user_error in list(user_form.errors.values()):
+                messages.error(request, user_error)
+            for opg_error in list(opg_form.errors.values()):
+                messages.error(request, opg_error)
 
     context = {
         'user_form': user_form,
