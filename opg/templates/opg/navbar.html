@@ -1,0 +1,29 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-sm bg-light ">
+  <div class="container-fluid">
+      <div class="navbar-brand">
+         <a href="{% url 'index' %}">
+            <img src="{% static 'opg.png' %}" alt="LOGO" style="width:100px" class="rounded-pill"/>
+         </a>
+      </div>
+    {% if user.is_authenticated and not request.user.opg == "" %}
+      <div class="container-fluid">
+        <ul class="navbar-nav color:green">
+         <li class="nav-item">
+            <a class="nav-link" href="{% url 'product_list' %}">Proizvodi</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" href="{% url 'profile' %}">Profil</a>
+         </li>
+         <li class="nav-item" >
+            <a class="nav-link" href="{% url 'logout' %}">Odjava</a>
+         </li>
+        </ul>
+      </div>
+      <div class="navbar-txt navbar-right">
+          {{ request.user.opg }}
+      </div>
+    {% endif %}
+  </div>
+</nav>
