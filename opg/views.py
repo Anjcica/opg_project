@@ -4,9 +4,10 @@ from django.contrib import messages
 from django.template import loader
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from .models import Product
+from .models import Opg, Product
 from .forms import OpgForm, ProductForm
 from user.forms import UserCreationForm
+from django.forms import inlineformset_factory
 
 
 def index(request):
@@ -80,19 +81,18 @@ def product_list(request):
 @login_required(login_url='login')
 def add_product(request):
     opg = request.user.opg
-    form = ProductForm()
+    ProductFormSet = inlineformset_factory(Opg, Product, fields=('name', 'category', 'opg'), extra=3, can_delete=False)
+    formset = ProductFormSet(queryset=Product.objects.none(), instance=opg)
     if request.method == 'POST':
-        form = ProductForm(request.POST)
-        if form.is_valid():
-            product = form.save(commit=False)
-            product.opg = opg
-            product.save()
+        formset = ProductFormSet(request.POST, instance=opg)
+        if formset.is_valid:
+            formset.save()
             return redirect('product_list')
         else:
-            for error in list(form.errors.values()):
+            for error in formset.errors:
                 messages.error(request, error)
     context = {
-        'form': form,
+        'formset': formset,
     }
     template = loader.get_template('opg/add_product.html')
     return HttpResponse(template.render(context, request))

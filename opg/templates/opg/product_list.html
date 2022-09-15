@@ -1,7 +1,7 @@
 {% extends 'opg/master.html' %}
 
 {% block content %}
-<p><a href="{% url 'add_product' %}"><input type="button" value=" Dodaj novi "></a></p>
+
 <table border="1">
     <tr>
         <th>Naziv proizvoda</th>
@@ -18,5 +18,7 @@
     </tr>
 {% endfor %}
 </table>
+
+<p><a href="{% url 'add_product' %}"><input type="button" value=" Dodaj nove proizvode "></a></p>
 
 {% endblock %}

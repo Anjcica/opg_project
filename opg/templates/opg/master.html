@@ -11,13 +11,13 @@
 </head>
 
 <body>
-    <div style="display:inline-block">
+<div style=" padding:1em; margin-bottom:25px; display:inline-block">
     {% include 'opg/logo.html' %}
     {% if user.is_authenticated and not request.user.opg == "" %}
         {% include 'opg/menu.html' %}
     {% endif %}
+</div>
 
-    </div>
     {% block content %}
 
         <p> empty page </p>
