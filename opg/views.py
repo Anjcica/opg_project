@@ -28,7 +28,7 @@ def register(request):
             user = user_form.save(commit=False)
             opg = opg_form.save(commit=False)
 
-            #Checking if OPG with same name, but diferent letter case already exist in database
+            # Checking if OPG with same name, but different letter case already exist in database
             for name in Opg.objects.all().values_list("name"):
                 print(name)
                 if opg.name.upper() == name[0].upper():
@@ -52,28 +52,6 @@ def register(request):
     }
     template = loader.get_template('opg/register.html')
     return HttpResponse(template.render(context, request))
-
-
-# def user_login(request):
-#     if request.method == 'POST':
-#         email = request.POST.get('email')
-#         password = request.POST.get('password')
-#
-#         user = authenticate(request, email=email, password=password)
-#
-#         if user is not None:
-#             login(request, user)
-#             return redirect('profile')
-#         else:
-#             messages.info(request, 'Ime ili lozinka pogrešni')
-#     context = {}
-#     template = loader.get_template('opg/login.html')
-#     return HttpResponse(template.render(context, request))
-#
-#
-# def user_logout(request):
-#     logout(request)
-#     return redirect('/')
 
 
 @login_required(login_url='login')
