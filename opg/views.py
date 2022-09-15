@@ -32,7 +32,7 @@ def register(request):
             for name in Opg.objects.all().values_list("name"):
                 print(name)
                 if opg.name.upper() == name[0].upper():
-                    messages.error(request, "Already exist OPG with same name ")
+                    messages.error(request, 'Opg with this Name already exists.')
                     return redirect('register')
 
             opg.user = user
@@ -67,7 +67,7 @@ def product_list(request):
 @login_required(login_url='login')
 def add_product(request):
     opg = request.user.opg
-    ProductFormSet = inlineformset_factory(Opg, Product, fields=('name', 'category', 'opg'), extra=3, can_delete=False)
+    ProductFormSet = inlineformset_factory(Opg, Product, fields=('name', 'category', 'opg'), extra=7, can_delete=False)
     formset = ProductFormSet(queryset=Product.objects.none(), instance=opg)
     if request.method == 'POST':
         formset = ProductFormSet(request.POST, instance=opg)

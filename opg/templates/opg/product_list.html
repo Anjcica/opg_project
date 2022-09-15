@@ -12,7 +12,13 @@
 {% for product in products %}
     <tr>
         <td>{{product.name|capfirst}}</td>
-        <td>{{product.category|lower|capfirst}}</td>
+        <td>
+            {% if product.category != None %}
+                {{product.category|lower|capfirst}}
+            {% else %}
+                Kategorija nije dodijeljena
+            {% endif %}
+        </td>
         <td><a href="{% url 'product' product.id %}">Detalji</a></td>
         <td> <a href="{% url 'delete_product' product.id %}">Brisanje</a></td>
     </tr>
