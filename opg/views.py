@@ -27,6 +27,14 @@ def register(request):
         if user_form.is_valid() and opg_form.is_valid():
             user = user_form.save(commit=False)
             opg = opg_form.save(commit=False)
+
+            #Checking if OPG with same name, but diferent letter case already exist in database
+            for name in Opg.objects.all().values_list("name"):
+                print(name)
+                if opg.name.upper() == name[0].upper():
+                    messages.error(request, "Already exist OPG with same name ")
+                    return redirect('register')
+
             opg.user = user
             user.save()
             opg.save()
