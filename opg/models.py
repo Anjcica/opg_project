@@ -21,7 +21,7 @@ class ProductCategory(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=50, blank=True, null=False)
+    name = models.CharField(max_length=50, blank=False, null=False)
     category = models.ForeignKey(ProductCategory, on_delete=models.SET(None), blank=True, null=True)
     opg = models.ForeignKey(Opg, on_delete=models.CASCADE)
 

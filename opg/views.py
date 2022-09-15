@@ -86,11 +86,16 @@ def add_product(request):
     if request.method == 'POST':
         formset = ProductFormSet(request.POST, instance=opg)
         if formset.is_valid:
-            formset.save()
+            try:
+                formset.save()
+            except ValueError as e:
+                messages.error(request, e)
+                return redirect('add_product')
             return redirect('product_list')
         else:
             for error in formset.errors:
                 messages.error(request, error)
+
     context = {
         'formset': formset,
     }
