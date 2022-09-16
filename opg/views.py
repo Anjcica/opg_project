@@ -14,7 +14,7 @@ def index(request):
     if request.user.is_authenticated and not(request.user.is_admin):
         return redirect('profile')
     context = {}
-    template = loader.get_template('opg/home.html')
+    template = loader.get_template('opg/index.html')
     return HttpResponse(template.render(context, request))
 
 

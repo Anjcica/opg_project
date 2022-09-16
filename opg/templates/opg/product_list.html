@@ -1,9 +1,8 @@
 {% extends 'opg/main.html' %}
 
 {% block content %}
-
 <h3>Popis proizvoda</h3>
-<table class="table table-striped table-hover table-bordered" style="border:2px">
+<table id="dtOrderExample" class="table table-striped table-hover table-bordered" style="border:2px">
     <tr>
         <th>Naziv proizvoda</th>
         <th>Kategorija proizvoda</th>
@@ -13,13 +12,19 @@
 {% for product in products %}
     <tr>
         <td>{{product.name|capfirst}}</td>
-        <td>{{product.category|lower|capfirst}}</td>
-        <td><a href="{% url 'product' product.id %}">Detalji</a></td>
+        <td>
+            {% if product.category != None %}
+                {{product.category|lower|capfirst}}
+            {% else %}
+                Kategorija nije dodijeljena
+            {% endif %}
+        </td>        <td><a href="{% url 'product' product.id %}">Detalji</a></td>
         <td> <a href="{% url 'delete_product' product.id %}">Brisanje</a></td>
     </tr>
 {% endfor %}
 </table>
 
-<p><a href="{% url 'add_product' %}"><input type="button" value=" Dodaj nove proizvode "></a></p>
+<a href="{% url 'add_product' %}"><button type="submit" class="btn btn-light">Dodaj nove proizvode</button></a>
 
 {% endblock %}
+

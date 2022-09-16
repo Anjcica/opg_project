@@ -3,7 +3,7 @@
 {% block content %}
 
 <h3>Dodavanje proizvoda </h3>
-<div
+<div style="margin-top:20px">
 <form action="" method="POST">
     {% csrf_token %}
     {{formset.management_form}}
@@ -13,7 +13,7 @@
         </p>
     {% endfor %}
         <br>
-    <input type="submit" value="Dodaj proizvode">
+    <button type="submit" class="btn btn-light">Pohrani nove proizvode</button>
 </form>
-
+</div>
 {% endblock %}
