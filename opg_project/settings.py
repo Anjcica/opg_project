@@ -29,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'django-insecure-5t^ydc*on5xd&n2e^va8e0e%a%kgf3a)y27^_42iia*h4k_rxw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['opg-zadatak.herokuapp.com', '127.0.0.1']
 
@@ -85,29 +85,29 @@ WSGI_APPLICATION = 'opg_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 #
-DATABASES = {
-    'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'OPG',
-    #     'USER': 'admin',
-    #     'PASSWORD': 'Passw0rd',
-    #     'HOST': 'localhost',
-    #     'PORT': '5432',
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'd9ib3snd0m751n',
-#         'USER': 'isuquznnupobbn',
-#         'PASSWORD': 'bbe817377502ecc5d0eb4ba01b9b2367c590a46883aba99ac6b86327dd3e0cf5',
-#         'HOST': 'ec2-99-81-137-11.eu-west-1.compute.amazonaws.com',
-#         'PORT': '5432',
+#     #     'ENGINE': 'django.db.backends.postgresql',
+#     #     'NAME': 'OPG',
+#     #     'USER': 'admin',
+#     #     'PASSWORD': 'Passw0rd',
+#     #     'HOST': 'localhost',
+#     #     'PORT': '5432',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd9ib3snd0m751n',
+        'USER': 'isuquznnupobbn',
+        'PASSWORD': 'bbe817377502ecc5d0eb4ba01b9b2367c590a46883aba99ac6b86327dd3e0cf5',
+        'HOST': 'ec2-99-81-137-11.eu-west-1.compute.amazonaws.com',
+        'PORT': '5432',
+    }
+}
 # DATABASES['default'] = dj_database_url.config(postgres://isuquznnupobbn:bbe817377502ecc5d0eb4ba01b9b2367c590a46883aba99ac6b86327dd3e0cf5@ec2-99-81-137-11.eu-west-1.compute.amazonaws.com:5432/d9ib3snd0m751n)
 
 
