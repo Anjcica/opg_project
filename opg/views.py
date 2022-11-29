@@ -91,15 +91,17 @@ def add_product(request):
 
 @login_required(login_url='login')
 def delete_product(request, pk):
-    product = Product.objects.get(id=pk)
-    if request.method == 'POST':
-        product.delete()
-        return redirect('product_list')
-    context = {
-        'product': product
-    }
-    template = loader.get_template('opg/delete_product.html')
-    return HttpResponse(template.render(context, request))
+    product = Product.objects.get(id=int(pk))
+    product.delete()
+    return redirect('product_list')
+    # if request.method == 'POST':
+    #     product.delete()
+    #     return redirect('product_list')
+    # context = {
+    #     'product': product
+    # }
+    # template = loader.get_template('opg/delete_product.html')
+    # return HttpResponse(template.render(context, request))
 
 
 @login_required(login_url='login')

@@ -20,7 +20,8 @@
             {% endif %}
         </td>
         <td><a href="{% url 'product' product.id %}">Detalji</a></td>
-        <td><a  href="{% url 'delete_product' product.id%}">Brisanje</a></td>
+        <td><a href="{% url 'delete_product' product.id %}" onclick="return confirm('Jeste li sigurni?');">Brisanje3</a></td>
+<!--        <td><a  href="{% url 'delete_product' product.id %}">Brisanje</a></td>-->
     </tr>
 {% endfor %}
 </table>
